@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 
 export default function SignupCard() {
@@ -53,6 +54,7 @@ export default function SignupCard() {
 
       await new Promise((r) => setTimeout(r, 1200));
       setDone(true);
+    //   redirect("/todopost");
     } catch {
       setErrors({ _form: "Something went wrong" });
     } finally {
@@ -60,32 +62,33 @@ export default function SignupCard() {
     }
   }
 
-//   if (done) {
-//     return (
-//       <div className="min-h-screen flex items-center justify-center bg-[#050505]">
-//         <div className="rounded-3xl border border-white/10 bg-neutral-900/80 backdrop-blur-xl p-10 text-center max-w-sm w-full mx-4">
-//           <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 text-2xl">
-//             ✓
-//           </div>
-//           <h2 className="text-2xl font-medium text-neutral-200 tracking-tight mb-2">
-//             Welcome, {form.name}!
-//           </h2>
-//           <p className="text-neutral-500 text-sm mb-6">
-//             Your account has been created.
-//           </p>
-//           <button
-//             onClick={() => {
-//               setDone(false);
-//               setForm({ name: "", email: "", password: "" });
-//             }}
-//             className="w-full h-12 rounded-xl bg-white text-black text-sm font-semibold hover:bg-neutral-200 transition-colors"
-//           >
-//             Done
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
+  if (done) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#050505]">
+        <div className="rounded-3xl border border-white/10 bg-neutral-900/80 backdrop-blur-xl p-10 text-center max-w-sm w-full mx-4">
+          <div className="w-16 h-16 mx-auto mb-5 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-500 text-2xl">
+            ✓
+          </div>
+          <h2 className="text-2xl font-medium text-neutral-200 tracking-tight mb-2">
+            Welcome, {form.name}!
+          </h2>
+          <p className="text-neutral-500 text-sm mb-6">
+            Your account has been created.
+          </p>
+          <button
+            onClick={() => {
+              setDone(false);
+              setForm({ name: "", email: "", password: "" });
+              redirect("/todopost");
+            }}
+            className="w-full h-12 rounded-xl bg-white text-black text-sm font-semibold hover:bg-neutral-200 transition-colors"
+          >
+            Done
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#050505]">
