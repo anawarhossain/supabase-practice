@@ -1,19 +1,22 @@
-import TodosData from '@/components/todosData';
-import React from 'react';
-
+import TodosData from "@/components/todosData";
+import React from "react";
 import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
 
 const todosPage = async () => {
+  // ক্লায়েন্ট তৈরি করার সময় await করুন
+  const supabase = await createClient();
 
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  // Supabase থেকে ডাটা ফেচিং
   const { data, error } = await supabase.from("todos").select("*");
-  console.log(data, error);
+
+  if (error) {
+    console.error("Error fetching todos:", error);
+  }
 
   return (
     <div>
-      <TodosData data={data}/>
+      {/* ডাটা যদি নাল বা এরর আসে তবে সেটির জন্য একটি খালি অ্যারে ব্যাকআপ রাখুন */}
+      <TodosData data={data || []} />
     </div>
   );
 };

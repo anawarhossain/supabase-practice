@@ -304,9 +304,9 @@ export default function TodosData({ data }) {
           </div>
         ) : (
           <div className="grid sm:grid-cols-4 lg:grid-cols-6 gap-5">
-            {cards.map((card, index) => (
+            {cards.map((card) => (
               <div
-                key={index}
+                key={card.id}
                 className={`group bg-white rounded-2xl border overflow-hidden hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 ${
                   editingId === card.id
                     ? "border-amber-300 ring-2 ring-amber-100"
